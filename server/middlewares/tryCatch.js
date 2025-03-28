@@ -9,5 +9,4 @@ const tryCatch = (handler) => {
     }
   };
 };
-
 export default tryCatch;

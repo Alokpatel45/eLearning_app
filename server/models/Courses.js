@@ -11,7 +11,7 @@ const schema = new mongoose.Schema({
   },
   image: {
     type: String,
-    // required: true,
+    required: true,
   },
   price: {
     type: Number,
@@ -35,4 +35,4 @@ const schema = new mongoose.Schema({
   },
 });
 
-export const Courses = mongoose.model("Couses", schema);
+export const Courses = mongoose.model("Courses", schema);
