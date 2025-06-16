@@ -20,7 +20,7 @@ router.post("/course/:id", isAuth, isAdmin, uploadFiles, addLecture);
 
 router.get("/stats", isAuth, isAdmin, allStats);
 
-router.get("/mycourses", isAuth, isAdmin, getMyCourses);
+router.get("/mycourses", isAuth, getMyCourses);
 
 router.delete("/course/:id", isAuth, isAdmin, deleteCourse);
 
