@@ -10,24 +10,48 @@ import Footer from "./components/footer/Footer";
 import About from "./pages/about/About";
 import Account from "./pages/account/Account";
 import { UserData } from "./context/UserContext";
+import Loading from "./components/loding/Loading";
+import Courses from "./pages/courses/Courses";
+import CourseDescription from "./pages/courseDescription/CourseDescription";
+// import Courses from "./pages/courses/Courses";
 const App = () => {
-  const { isAuth } = UserData();
+  const { isAuth, user, loading } = UserData();
   return (
-    <Router>
-      <Header isAuth={isAuth} />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />}></Route>
-        <Route
-          path="/account"
-          element={isAuth ? <Account /> : <Login />}
-        ></Route>
-        <Route path="/login" element={isAuth ? <Home /> : <Login />} />
-        <Route path="/register" element={isAuth ? <Home /> : <Register />} />
-        <Route path="/verify" element={isAuth ? <Home /> : <Verify />} />
-      </Routes>
-      <Footer></Footer>
-    </Router>
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <Router>
+          <Header isAuth={isAuth} />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />}></Route>
+            <Route path="/courses" element={<Courses />}></Route>
+            <Route
+              path="/account"
+              element={isAuth ? <Account user={user} /> : <Login />}
+            ></Route>
+            <Route path="/login" element={isAuth ? <Home /> : <Login />} />
+            <Route
+              path="/register"
+              element={isAuth ? <Home /> : <Register />}
+            />
+            <Route path="/verify" element={isAuth ? <Home /> : <Verify />} />
+            <Route
+              path="/course/:id"
+              element={
+                isAuth ? (
+                  <CourseDescription user={user}></CourseDescription>
+                ) : (
+                  <Login></Login>
+                )
+              }
+            ></Route>
+          </Routes>
+          <Footer></Footer>
+        </Router>
+      )}
+    </>
   );
 };
 
