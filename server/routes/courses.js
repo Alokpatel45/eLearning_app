@@ -4,6 +4,9 @@ import {
   getAllCourses,
   getAllLectures,
   getSingleCourses,
+  getMyCourses,
+  checkout,
+  paymentVerification,
 } from "../controllers/courses.js";
 import { isAuth } from "../middlewares/isAuth.js";
 
@@ -13,5 +16,7 @@ router.get("/course/all", getAllCourses);
 router.get("/course/:id", getSingleCourse);
 router.get("/lectures/:id", isAuth, getAllLectures);
 router.get("/lecture/:id", isAuth, getSingleCourses);
-
+router.get("/mycourse", isAuth, getMyCourses);
+router.post("/course/checkout/:id", isAuth, checkout);
+router.post("/verification/:id", isAuth, paymentVerification);
 export default router;

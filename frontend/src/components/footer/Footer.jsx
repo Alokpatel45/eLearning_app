@@ -7,12 +7,12 @@ const Footer = () => {
         <p>
           &copy; 2024 Your E-learning Plateform.All rights reserved.<br></br>
           Made with ❤️ <a href="">Alok Patel</a>
-          <div className="social-links">
-            <a href=""></a>
-            <a href=""></a>
-            <a href=""></a>
-          </div>
         </p>
+        <div className="social-links">
+          <a href=""></a>
+          <a href=""></a>
+          <a href=""></a>
+        </div>
       </div>
     </footer>
   );

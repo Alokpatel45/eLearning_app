@@ -37,3 +37,15 @@ export const CourseContextProvider = ({ children }) => {
 };
 
 export const CourseData = () => useContext(CourseContext);
+
+async function fetchMyCourse(params) {
+  try {
+    const { data } = await axios.get(`${server}/api/mycourse`, {
+      header: {
+        token: localStorage.getItem("token"),
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}

@@ -4,7 +4,7 @@ import { Lecture } from "../models/lecture.js";
 import { rm } from "fs";
 import { promisify } from "util";
 import fs from "fs";
-import { User } from "../models/User.js";
+import { User } from "../models/user.js";
 export const createCourse = tryCatch(async (req, res) => {
   const { title, description, category, createdBy, duration, price } = req.body;
   const image = req.file;
@@ -17,7 +17,7 @@ export const createCourse = tryCatch(async (req, res) => {
     duration,
     price,
   });
-  res.status(200).json({
+  res.status(201).json({
     message: "Course Created",
   });
 });

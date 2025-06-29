@@ -4,9 +4,15 @@ import userRoute from "./routes/user.js";
 import courseRoute from "./routes/courses.js";
 import adminRoute from "./routes/admin.js";
 import { connectDB } from "./database/db.js";
+import Razorpay from "razorpay";
+
 dotenv.config();
 import cors from "cors";
 
+export const instance = new Razorpay({
+  key_id: process.env.Razorpay_Key,
+  key_secret: process.env.Razorpay_Secret,
+});
 const app = express();
 app.use(express.json());
 app.use(cors());
