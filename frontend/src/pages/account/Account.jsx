@@ -27,9 +27,22 @@ const Account = ({ user }) => {
             <p>
               <strong>Email-{user.email}</strong>
             </p>
-            <button className="common-btn">
+            <button
+              onClick={() => navigate(`/${user._id}/dashboard`)}
+              className="common-btn"
+            >
               <MdDashboard></MdDashboard>Dashboard
             </button>
+            <br />
+            {user.role === "admin" && (
+              <button
+                onClick={() => navigate(`/admin/dashboard`)}
+                className="common-btn"
+              >
+                <MdDashboard></MdDashboard>Admin Dashboard
+              </button>
+            )}
+            <br />
             <button
               className="common-btn"
               onClick={logoutHandler}

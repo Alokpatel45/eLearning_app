@@ -37,7 +37,7 @@ export const getAllLectures = tryCatch(async (req, res) => {
     lectures,
   });
 });
-export const getSingleCourses = tryCatch(async (req, res) => {
+export const fetchLecture = tryCatch(async (req, res) => {
   const lecture = await Lecture.findById(req.params.id);
   const user = await User.findById(req.user._id);
   if (user.role == "admin") {
@@ -45,7 +45,7 @@ export const getSingleCourses = tryCatch(async (req, res) => {
       lecture,
     });
   }
-  if (!user.subscription.includes(req.params.id)) {
+  if (!user.subscription.includes(lecture.course)) {
     return res.status(400).json({
       message: "You are not subscribed to this course",
     });

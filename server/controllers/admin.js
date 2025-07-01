@@ -120,8 +120,35 @@ export const allStats = tryCatch(async (req, res) => {
   const totalLectures = (await Lecture.find()).length;
   const totalUsers = (await User.find()).length;
   res.status(200).json({
-    totalCourses,
-    totalLectures,
-    totalUsers,
+    stats: {
+      totalCourses,
+      totalLectures,
+      totalUsers,
+    },
   });
+});
+
+export const getAllUser = tryCatch(async (req, res) => {
+  const users = await User.find({ _id: { $ne: req.user._id } }).select(
+    "-password"
+  );
+  res.json({ users });
+});
+
+export const updateRole = tryCatch(async (req, res) => {
+  const user = await User.findById(req.params.id);
+  if (user.role === "user") {
+    user.role = "admin";
+    await user.save();
+    return res.status(200).json({
+      message: "role updated to admin",
+    });
+  }
+  if (user.role === "admin") {
+    user.role = "admin";
+    await user.save();
+    return res.status(200).json({
+      message: "role updated",
+    });
+  }
 });

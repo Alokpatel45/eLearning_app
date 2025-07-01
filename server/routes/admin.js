@@ -6,6 +6,8 @@ import {
   createCourse,
   deleteCourse,
   deleteLecture,
+  getAllUser,
+  updateRole,
 } from "../controllers/admin.js";
 import { uploadFiles } from "../middlewares/multer.js";
 import multer from "multer";
@@ -25,5 +27,9 @@ router.get("/mycourses", isAuth, getMyCourses);
 router.delete("/course/:id", isAuth, isAdmin, deleteCourse);
 
 router.delete("/lecture/:id", isAuth, isAdmin, deleteLecture);
+
+router.put("/user/:id", isAuth, isAdmin, updateRole);
+
+router.get("/users", isAuth, isAdmin, getAllUser);
 
 export default router;

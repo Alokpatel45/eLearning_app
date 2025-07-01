@@ -14,6 +14,12 @@ import Loading from "./components/loding/Loading";
 import Courses from "./pages/courses/Courses";
 import CourseDescription from "./pages/courseDescription/CourseDescription";
 import PaymentSuccess from "./pages/payemtSuccess/PaymentSuccess";
+import Dashboard from "./pages/dashboard/Dashboard";
+import CourseStudy from "./pages/coursestudy/CourseStudy";
+import Lecture from "./lecture/Lecture";
+import AdminDashboard from "./admin/Dashboard/AdminDashboard";
+import AdminCourse from "./admin/Courses/AdminCourse";
+import AdminUsers from "./admin/Users/AdminUsers";
 // import Courses from "./pages/courses/Courses";
 const App = () => {
   const { isAuth, user, loading } = UserData();
@@ -57,6 +63,40 @@ const App = () => {
                   <Login></Login>
                 )
               }
+            ></Route>
+            <Route
+              path="/:id/dashboard"
+              element={
+                isAuth ? <Dashboard user={user}></Dashboard> : <Login></Login>
+              }
+            ></Route>
+            <Route
+              path="/course/study/:id"
+              element={
+                isAuth ? (
+                  <CourseStudy user={user}></CourseStudy>
+                ) : (
+                  <Login></Login>
+                )
+              }
+            ></Route>
+            <Route
+              path="/lectures/:id"
+              element={
+                isAuth ? <Lecture user={user}></Lecture> : <Login></Login>
+              }
+            ></Route>
+            <Route
+              path="/admin/dashboard"
+              element={isAuth ? <AdminDashboard use={user} /> : <Login></Login>}
+            ></Route>
+            <Route
+              path="/admin/course"
+              element={isAuth ? <AdminCourse use={user} /> : <Login></Login>}
+            ></Route>
+            <Route
+              path="/admin/users"
+              element={isAuth ? <AdminUsers use={user} /> : <Login></Login>}
             ></Route>
           </Routes>
           <Footer></Footer>
